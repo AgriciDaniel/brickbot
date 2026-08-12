@@ -5,6 +5,7 @@ import { useAgentCall, type CallStatus } from "@/contexts/agent-call-context"
 import { PixelAvatar, LcdBars, MicBars } from "@/components/pixel-avatar"
 import { SnakeGame, type SnakeHandle } from "@/components/snake-game"
 import { getSettings, setSetting, VOICES, type PhoneSettings } from "@/lib/phone-settings"
+import { playKeyTone } from "@/lib/dtmf"
 import { Phone, PhoneOff, ChevronDown, ChevronUp } from "lucide-react"
 import { useClickWheelSound } from "@/hooks/use-click-wheel-sound"
 
@@ -82,6 +83,10 @@ export function Nokia3310({ isActive = true, deviceName = "Nokia 3310" }: { isAc
       setClicksEnabled(next.clicks)
       setSettingsState(next)
     } else if (settingsIndex === 1) {
+      const next = setSetting("tones", !settings.tones)
+      setSettingsState(next)
+      if (next.tones) playKeyTone("5") // preview beep
+    } else if (settingsIndex === 2) {
       const order: PhoneSettings["micSens"][] = ["low", "normal", "high"]
       const next = setSetting("micSens", order[(order.indexOf(settings.micSens) + 1) % order.length])
       setSettingsState(next)
@@ -96,7 +101,7 @@ export function Nokia3310({ isActive = true, deviceName = "Nokia 3310" }: { isAc
     playClick()
     if (view === "call") setView("menu")
     else if (view === "menu") setMenuIndex((i) => (i + MENU_ITEMS.length - 1) % MENU_ITEMS.length)
-    else if (view === "settings") setSettingsIndex((i) => (i + 2) % 3)
+    else if (view === "settings") setSettingsIndex((i) => (i + 3) % 4)
     else if (view === "log") setLogOffset((prev) => Math.min(Math.max(0, transcript.length - 1), prev + 1))
     else if (view === "snake") snakeRef.current?.steer("up")
   }
@@ -105,7 +110,7 @@ export function Nokia3310({ isActive = true, deviceName = "Nokia 3310" }: { isAc
     playClick()
     if (view === "call") setView("menu")
     else if (view === "menu") setMenuIndex((i) => (i + 1) % MENU_ITEMS.length)
-    else if (view === "settings") setSettingsIndex((i) => (i + 1) % 3)
+    else if (view === "settings") setSettingsIndex((i) => (i + 1) % 4)
     else if (view === "log") setLogOffset((prev) => Math.max(0, prev - 1))
     else if (view === "snake") snakeRef.current?.steer("down")
   }
@@ -129,7 +134,7 @@ export function Nokia3310({ isActive = true, deviceName = "Nokia 3310" }: { isAc
   }
 
   const handleKeypad = (key: string) => {
-    playClick()
+    playKeyTone(key)
     if (view === "snake") {
       if (key === "2") snakeRef.current?.steer("up")
       else if (key === "4") snakeRef.current?.steer("left")
@@ -160,6 +165,7 @@ export function Nokia3310({ isActive = true, deviceName = "Nokia 3310" }: { isAc
 
   const settingRows = [
     { label: "Key clicks", value: settings.clicks ? "On" : "Off" },
+    { label: "Key tones", value: settings.tones ? "On" : "Off" },
     { label: "Mic sens.", value: settings.micSens.charAt(0).toUpperCase() + settings.micSens.slice(1) },
     { label: "Voice", value: VOICES.find((v) => v.id === settings.voice)?.label || "?" },
   ]

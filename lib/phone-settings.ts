@@ -2,6 +2,7 @@
 
 export interface PhoneSettings {
   clicks: boolean
+  tones: boolean
   micSens: "low" | "normal" | "high"
   voice: string
 }
@@ -10,6 +11,7 @@ const KEY = "nokia-phone-settings"
 
 const DEFAULTS: PhoneSettings = {
   clicks: true,
+  tones: true,
   micSens: "normal",
   voice: "en-US-AvaMultilingualNeural",
 }
