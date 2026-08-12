@@ -1,99 +1,65 @@
-# IAmNokia 📞
+# brickbot
 
-**A Nokia 3310 that takes live voice calls with Claude. No API keys.**
+**The brick is back, and it talks.**
 
-```
-┌──────────────────────────────────────┐
-│ ≡ ▭            16:52            ▁▃▅▇ │
-│                                      │
-│              ▄▄▄▄▄▄▄▄                │
-│            ▄▀        ▀▄              │
-│            █  ██  ██  █              │
-│            █          █              │
-│            █   ▄▄▄▄   █    CLAUDE    │
-│            ▀▄        ▄▀   ON  THE    │
-│              ▀▀▀▀▀▀▀▀       LINE     │
-│                                      │
-│         CALL 00:42 · SPEAKING        │
-│      1 check my repo                 │
-│      2 read the news                 │
-│      3 play snake                    │
-└──────────────────────────────────────┘
-```
+A Nokia 3310 in your browser with Claude on the line. Press the green key,
+speak, it speaks back. Local Whisper ears, your own Claude Code session for
+a brain, edge-tts voice, pixel face lip-syncing on a monochrome LCD.
+No API keys. No cloud middleman. Your GPU, your terminal, your call.
 
-Press the green key. Talk. It hears you (local Whisper on your GPU), thinks
-(your own persistent Claude Code CLI session, full tool access), and talks
-back (edge-tts) while a pixel avatar lip-syncs on the monochrome LCD. Every
-answer ends with three IVR options — press 1, 2, or 3 like it's 1999.
+<p align="center">
+  <img src="docs/brickbot.jpg" alt="brickbot: a Nokia 3310 with Claude on the line" width="380">
+</p>
 
-## How it works
+## Wire
 
 ```
-Browser (Next.js phone UI)
-  │  mic (MediaRecorder, webm)          TTS mp3 + word timings
-  ▼                                     ▲
-WebSocket  ws://localhost:3010          │
-  ▼                                     │
-bridge/server.cjs ──► ffmpeg ──► faster-whisper (CUDA, persistent)
-        │
-        ├──► claude CLI (persistent stream-json session, full tools)
-        └──► bridge/tts.py (edge-tts, word boundaries)
+you ──mic──► whisper (CUDA) ──► claude CLI ──► edge-tts ──speaker──► you
+                    all glued by one WebSocket bridge on :3010
 ```
 
-## Quickstart
+## Run it
 
-Requirements: Node 18+, pnpm, Python 3.10+ with `faster-whisper` + `edge-tts`,
-ffmpeg, an NVIDIA GPU (CUDA 12), and an authenticated
-[Claude Code CLI](https://claude.ai/code).
+Node 18+ · pnpm · Python 3.10+ (`faster-whisper`, `edge-tts`) · ffmpeg ·
+NVIDIA GPU · [Claude Code CLI](https://claude.ai/code) logged in.
 
 ```bash
 pnpm install
-pnpm dev        # phone    → http://localhost:3000
-pnpm bridge     # bridge   → ws://localhost:3010
+pnpm dev        # phone  → http://localhost:3000
+pnpm bridge     # bridge → ws://localhost:3010
 
-# snappier calls on a faster model:
-CLAUDE_MODEL=claude-sonnet-5 pnpm bridge
+CLAUDE_MODEL=claude-sonnet-5 pnpm bridge   # faster mouth, smaller bill
 ```
 
-The LCD signal bars tell the truth: full = bridge connected.
+Signal bars don't lie. Full = connected.
 
-## The phone
+## Drive it
 
-| Key | Does |
+| Key | Move |
 |---|---|
-| **Green key** | start / end a hands-free live call (voice-activity detection: talk, pause, it answers, repeat) |
-| **Navi key** (cyan dash) | push-to-talk — dash turns red while recording; press again to send; interrupts Claude mid-sentence |
-| **Rocker ▲▼** | menu: Transcript · Snake II · Settings |
-| **Keypad 1·2·3** | pick one of the three actions Claude offers after every reply |
-| **Keypad 2·4·6·8** | steer the snake |
+| 🟢 green key | live call — talk, pause, it answers, repeat. hands stay in pockets |
+| ─ navi key | push-to-talk. dash burns red while it records you |
+| ▲▼ rocker | menu: Transcript · Snake II · Settings |
+| 1 2 3 | every answer ends with three moves. press one. IVR like it's 1999 |
+| 2 4 6 8 | the snake obeys |
 
-Settings (persisted): key clicks, mic sensitivity, Claude's voice
-(Ava / Andrew / Emma / Sonia).
+## Read the docs
 
-## Docs
+- [HANDOFF.md](HANDOFF.md) — protocol, file map, state machine, tuning, every gotcha we hit
+- [PRINCIPLE.md](PRINCIPLE.md) — one law: *if it wouldn't exist on a 1999 Nokia, it doesn't ship*
 
-- **[HANDOFF.md](HANDOFF.md)** — full integration reference: file inventory,
-  WebSocket protocol, IVR contract, state machine, tuning, gotchas.
-- **[PRINCIPLE.md](PRINCIPLE.md)** — the one design law:
-  *if it wouldn't exist on a 1999 Nokia, it doesn't belong on this phone.*
+## Lock your door
 
-## Before you expose anything
+The bridge hands the phone a Claude session with **full tool access** and
+listens on every interface. Keep it home:
+`server.listen(PORT, '127.0.0.1')`. Don't let the LAN talk to your terminal.
 
-The bridge gives the phone a Claude session with **full tool access** and
-binds all interfaces by default. Keep it on localhost
-(`server.listen(PORT, '127.0.0.1')`) unless you very deliberately want your
-LAN talking to your terminal.
+## Respect
 
-## Credits
+Chassis born from [Played](https://github.com/sidhyatikku/music-player-skin)
+by Sidhya Tikku · voice pipeline from
+[claude-avatar](https://github.com/AgricIDaniel/claude-avatar) ·
+[faster-whisper](https://github.com/SYSTRAN/faster-whisper) ·
+[edge-tts](https://github.com/rany2/edge-tts)
 
-- Phone chassis derived from [Played](https://github.com/sidhyatikku/music-player-skin)
-  by Sidhya Tikku (GPL-3.0) — the Nokia started life as a music player skin.
-- Voice pipeline adapted from [claude-avatar](https://github.com/AgricIDaniel/claude-avatar)
-  by Agrici Daniel.
-- [faster-whisper](https://github.com/SYSTRAN/faster-whisper) ·
-  [edge-tts](https://github.com/rany2/edge-tts) · Snake II © our collective memory.
-
-## License
-
-GPL-3.0 — see [LICENSE](LICENSE). This project derives from GPL-3.0 code and
-stays free the same way.
+GPL-3.0. Came from free code, stays free.
