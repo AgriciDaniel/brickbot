@@ -11,11 +11,11 @@ No API keys. No cloud middleman. Your GPU, your terminal, your call.
 
 <table align="center">
   <tr>
-    <td align="center"><img src="docs/nokai.jpg" alt="nokai idle: Claude on the line" width="330"></td>
+    <td align="center"><img src="docs/nokai-idle.gif" alt="nokai idle: he blinks, he greets" width="330"></td>
     <td align="center"><img src="docs/snake.gif" alt="Snake II running on the brick" width="330"></td>
   </tr>
   <tr>
-    <td align="center"><sub><b>the brick</b> · claude on the line</sub></td>
+    <td align="center"><sub><b>the brick</b> · he blinks. he says hello.</sub></td>
     <td align="center"><sub><b>the waiting room</b> · snake II, real gameplay</sub></td>
   </tr>
 </table>
