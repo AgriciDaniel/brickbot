@@ -20,6 +20,14 @@ No API keys. No cloud middleman. Your GPU, your terminal, your call.
   </tr>
 </table>
 
+## Watch on YouTube
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=fivCZisB5Os">
+    <img src="https://img.youtube.com/vi/fivCZisB5Os/maxresdefault.jpg" alt="Watch: NOKAI, the brick that talks back" width="640">
+  </a>
+</p>
+
 ## Wire
 
 ```
