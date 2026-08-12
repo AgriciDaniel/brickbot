@@ -1,4 +1,6 @@
-# brickbot
+<p align="center">
+  <img src="docs/banner.svg" alt="BRICKBOT" width="800">
+</p>
 
 **The brick is back, and it talks.**
 
@@ -7,9 +9,16 @@ speak, it speaks back. Local Whisper ears, your own Claude Code session for
 a brain, edge-tts voice, pixel face lip-syncing on a monochrome LCD.
 No API keys. No cloud middleman. Your GPU, your terminal, your call.
 
-<p align="center">
-  <img src="docs/brickbot.jpg" alt="brickbot: a Nokia 3310 with Claude on the line" width="380">
-</p>
+<table align="center">
+  <tr>
+    <td align="center"><img src="docs/brickbot.jpg" alt="brickbot idle: Claude on the line" width="330"></td>
+    <td align="center"><img src="docs/snake.gif" alt="Snake II running on the brick" width="330"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub><b>the brick</b> · claude on the line</sub></td>
+    <td align="center"><sub><b>the waiting room</b> · snake II, real gameplay</sub></td>
+  </tr>
+</table>
 
 ## Wire
 
@@ -42,6 +51,12 @@ Signal bars don't lie. Full = connected.
 | ▲▼ rocker | menu: Transcript · Snake II · Settings |
 | 1 2 3 | every answer ends with three moves. press one. IVR like it's 1999 |
 | 2 4 6 8 | the snake obeys |
+
+Claude got you waiting? Up-arrow → **Snake II**. Wrap-around walls,
+9 points a feed, gets faster the longer you live. The mouth on the LCD
+moves word-by-word off real TTS timings, the bars dance to real audio —
+yours while you talk, Claude's while it answers. Nothing on that screen
+is faking it.
 
 ## Read the docs
 
