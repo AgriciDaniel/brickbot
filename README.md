@@ -1,17 +1,17 @@
 <p align="center">
-  <img src="docs/banner.svg" alt="BRICKBOT" width="800">
+  <img src="docs/banner.svg" alt="NOKAI" width="800">
 </p>
 
 **The brick is back, and it talks.**
 
-A Nokia 3310 in your browser with Claude on the line. Press the green key,
+A NOKAI 3310 in your browser with Claude on the line. Press the green key,
 speak, it speaks back. Local Whisper ears, your own Claude Code session for
 a brain, edge-tts voice, pixel face lip-syncing on a monochrome LCD.
 No API keys. No cloud middleman. Your GPU, your terminal, your call.
 
 <table align="center">
   <tr>
-    <td align="center"><img src="docs/brickbot.jpg" alt="brickbot idle: Claude on the line" width="330"></td>
+    <td align="center"><img src="docs/nokai.jpg" alt="nokai idle: Claude on the line" width="330"></td>
     <td align="center"><img src="docs/snake.gif" alt="Snake II running on the brick" width="330"></td>
   </tr>
   <tr>

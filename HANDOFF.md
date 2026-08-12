@@ -1,6 +1,6 @@
 # Nokia Voice — Integration Handoff
 
-A Nokia 3310 rendered in React that takes live voice calls with Claude.
+A NOKAI 3310 rendered in React that takes live voice calls with Claude.
 No API keys: speech goes through local Whisper (GPU), a persistent Claude
 Code CLI session, and edge-tts, glued by one WebSocket bridge.
 

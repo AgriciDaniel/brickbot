@@ -1,5 +1,5 @@
 {
-  "name": "brickbot",
+  "name": "nokai",
   "version": "1.0.0",
   "private": true,
   "description": "A Nokia 3310 that takes live voice calls with Claude. No API keys.",

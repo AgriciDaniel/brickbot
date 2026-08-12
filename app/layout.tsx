@@ -4,7 +4,7 @@ import "./globals.css"
 import { ClickWheelSoundProvider } from "@/hooks/use-click-wheel-sound"
 
 export const metadata: Metadata = {
-  title: "brickbot",
+  title: "nokai",
   description: "A Nokia 3310 that takes live voice calls with Claude. No API keys.",
 }
 

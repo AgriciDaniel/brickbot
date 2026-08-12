@@ -306,7 +306,7 @@ export function Nokia3310({ isActive = true, deviceName = "Nokia 3310" }: { isAc
         <div className="absolute top-[46px] left-1/2 -translate-x-1/2 w-[204px] h-[286px] bg-gradient-to-b from-[#e6eaee] via-[#c9d1d8] to-[#9fa9b4] rounded-t-[48px] rounded-b-[100px] shadow-[0_6px_14px_rgba(0,0,0,0.55),0_1px_0_rgba(255,255,255,0.55)_inset,0_-2px_5px_rgba(0,0,0,0.3)_inset] border border-[#7f8994]">
           {/* NOKIA logo printed on the plate */}
           <div className="absolute top-[8px] left-1/2 -translate-x-1/2 text-[#2a3550] text-[14px] font-extrabold tracking-[0.12em]">
-            NOKIA
+            NOKAI
           </div>
 
           {/* Screen: dark surround, green LCD */}
@@ -350,7 +350,7 @@ export function Nokia3310({ isActive = true, deviceName = "Nokia 3310" }: { isAc
               </div>
             ) : (
               <div className="w-full h-full bg-[#8a9a8a] rounded-[7px] flex items-center justify-center shadow-[0_2px_4px_rgba(0,0,0,0.3)_inset]">
-                <div className="text-[#2a3a2a] text-sm font-bold font-mono text-center px-2">Nokia</div>
+                <div className="text-[#2a3a2a] text-sm font-bold font-mono text-center px-2">Nokai</div>
               </div>
             )}
           </div>
