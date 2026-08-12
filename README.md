@@ -65,9 +65,9 @@ is faking it.
 
 ## Lock your door
 
-The bridge hands the phone a Claude session with **full tool access** and
-listens on every interface. Keep it home:
-`server.listen(PORT, '127.0.0.1')`. Don't let the LAN talk to your terminal.
+The bridge hands the phone a Claude session with **full tool access**. It
+binds `127.0.0.1` only — the LAN can't talk to your terminal. If you set
+`BRIDGE_HOST=0.0.0.0`, you did that to yourself.
 
 ## Respect
 
