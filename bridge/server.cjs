@@ -365,7 +365,9 @@ async function sendResultWithTTS(id, text, safeSend, voice) {
   }
 }
 
-server.listen(PORT, () => {
+// Loopback only: this session has full tool access, keep it off the LAN.
+// Set BRIDGE_HOST=0.0.0.0 only if you know exactly why you want that.
+server.listen(PORT, process.env.BRIDGE_HOST || '127.0.0.1', () => {
   console.log('Bridge listening on ws://localhost:' + PORT);
   console.log('─'.repeat(40));
 });
